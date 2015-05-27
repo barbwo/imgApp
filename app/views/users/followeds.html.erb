@@ -1,0 +1,26 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+  	<div class="row">
+          <%= render "profile" %>
+      <div class="col-lg-5 ">
+        <div class="btn-group pull-right stats" role="group">
+      <a class="btn btn-default stat" href="<%= user_path (@user) %>">
+                  <span class="bold"> 0 </span><br/>
+             zdjęć
+                   </a>
+                   <a class="btn btn-default stat  stat_underlined" href="<%= followeds_user_path(@user) %>">
+              <span class="bold"> <%= @user.followeds.count %> </span><br/>
+             obserwowani
+                   </a>
+                  <a class="btn btn-default stat" href="<%= followers_user_path(@user) %>">
+              <span class="bold"> <%= @user.followers.count %> </span><br/>
+             obserwujący
+                   </a>
+</div>
+      </div>
+    </div>
+  </div>
+  <div class="panel-body">
+    <%= render "user_gallery" %>
+  </div>
+</div>

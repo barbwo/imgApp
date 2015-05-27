@@ -1,0 +1,16 @@
+<% for i in (0 .. @users.count/6) %>
+      <div class="row">
+        <% for j in (0..5) %>
+          <% if (!@users[6*i+j].nil?) %>
+            <div class="col-md-2 col-xs-4">
+                <div class="thumbnail thumbnail_gallery">
+                <%= link_to (gravatar_for_gallery @users[6*i+j]), @users[6*i+j] %>
+                <h4><%= @users[6*i+j].nick %></h4>
+              </div>
+            </div>
+          <% else %>
+             <% break; %>
+          <% end %>
+        <% end %>  
+      </div>   
+    <% end %>  

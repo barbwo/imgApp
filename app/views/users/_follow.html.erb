@@ -1,0 +1,17 @@
+  <%if signed_in? %>
+      <% if current_user.id == @user.id %>
+         <%= link_to "Edytuj", edit_user_registration_path(current_user), class: "btn btn-primary follow" %>
+      <% else %>
+	  <% if current_user.following?(@user)%>
+	    <%= form_for(current_user.active_relationships.find_by(followed_id: @user.id),
+	             html: { method: :delete }) do |f| %>
+	  <%= f.submit "Obserwowany", class: "btn follow" %>
+	<% end %>
+	  <% else %>
+	    <%= form_for(current_user.active_relationships.build) do |f| %>
+			  <div><%= hidden_field_tag :followed_id, @user.id %></div>
+			  <%= f.submit "Obserwuj", class: "btn btn-primary follow" %>
+			<% end %>
+			<% end %>
+	  <% end %>
+<%end%>

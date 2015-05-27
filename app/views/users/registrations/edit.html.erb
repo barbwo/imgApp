@@ -1,0 +1,57 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4>Edytuj profil</h4>
+  </div>
+  <div class="panel-body">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= devise_error_messages! %>
+
+      <div class="form-group">
+        <%= f.label :nick %>
+        <%= f.text_field :nick, autofocus: true, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :name %>
+        <%= f.text_field  :name, default: "opcjonalnie", class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :email %>
+        <%= f.email_field :email, class: "form-control" %>
+      </div>
+
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <% end %>
+
+      <div class="form-group">
+        <%= f.label :password %> <i>(pozostaw pole puste, jesli nie chcesz zmieniać hasła)</i>
+        <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :current_password %> <i>(aby potwierdzić zmiany, wpisz aktualne hasło)</i>
+        <%= f.password_field :current_password, autocomplete: "off", class: "form-control" %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "Aktualizuj", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+    <%= link_to "Back", :back %>
+  </div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">
+      <h4>Usuń moje konto</h4>
+  </div>
+  <div class="panel-body">
+    <p><%= button_to "Usuń", registration_path(resource_name), data: { confirm: "Jesteś pewien?" }, method: :delete, class: "btn btn-primary" %></p>
+  </div>
+</div>

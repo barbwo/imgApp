@@ -1,0 +1,16 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4>Użytkownicy</h4>
+  </div>
+  <div class="panel-body">
+	<ul class="list-group">
+	  <% @users.each do |u| %>
+	  <li class="list-group-item">
+	  		<span style="font-weight:bold; padding-right:10px;"><%= link_to u.nick, user_path(u) %></span> 
+	  	  <%= u.name if !u.blank? %> 
+	  	  <%= u.email if !Rails.env.development? %>
+	  </li>
+	  <% end %>
+	</ul>
+  </div>
+</div>

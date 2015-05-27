@@ -1,5 +1,14 @@
 Rails.application.routes.draw do
-  root :to => "application#index"
+  devise_for :users, controllers: { sessions: "users/sessions", omniauth_callbacks: "users/omniauth_callbacks" }
+  resources :users, only: [:index, :show]
+  resources :users do
+    member do
+      get :followeds, :followers
+    end
+  end
+  resources :relationships,       only: [:create, :destroy]
+  root :to => "application#index" # albo:
+  #root :to => "application#index" 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

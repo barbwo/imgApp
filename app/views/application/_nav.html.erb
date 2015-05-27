@@ -1,0 +1,40 @@
+    <div class="container">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <%= link_to "IG app", root_path, class: "navbar-brand" %>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <% if !user_signed_in? %>
+            <li>
+              <%= link_to "Rejestracja", new_user_registration_path %> 
+            </li>
+            <li>
+              <%= link_to "Zaloguj", new_user_session_path %>
+            </li>
+            <% else %>
+            <li>
+              <%= link_to current_user.nick, user_path(current_user) %>
+            </li>
+            <li>
+              <%= link_to "Edytuj", edit_user_registration_path(current_user) %>
+            </li>
+            <li>
+              <%= link_to "Wyloguj", destroy_user_session_path, :method=>'delete' %></li>
+            </li>
+            <% end %>
+            <li>
+              <%= link_to "Użytkownicy", users_path %>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+  </div>

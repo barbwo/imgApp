@@ -1,0 +1,44 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4>Rejestracja</h4>
+  </div>
+  <div class="panel-body">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= devise_error_messages! %>
+
+      <div class="form-group">
+        <%= f.label :nick %>
+        <%= f.text_field :nick, autofocus: true, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :name %>
+        <%= f.text_field  :name, default: "opcjonalnie", class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :email %>
+        <%= f.email_field :email, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :password %>
+        <% if @validatable %>
+        <em>(minimum <%= @minimum_password_length %> znaków)</em>
+        <% end %>
+        <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "Zarejestruj", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+    <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
+    <%= render "users/shared/links" %>
+  </div>
+</div>

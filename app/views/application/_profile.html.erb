@@ -1,0 +1,21 @@
+<div class="col-lg-2 pull-left">
+  <div  class="media">
+    <div class="media-left media-middle">
+    	<%= gravatar_for_logo @user %>
+      <%= render 'follow' if signed_in? %>
+    </div>
+  </div>
+</div>
+<div class="col-lg-5">
+  <div class="media">
+    <div class="media-left media-middle">
+	    <h1 class="profil"><%= @user .nick %></h1>
+	    <h2 class="profil">
+	      <%if !@user.name.blank? %>
+	        <%= @user.name  %>
+	      <% end %> 
+	    </h2>
+	    <p class="last_log"> Ostatnie logowanie: <%= localize(@user.last_sign_in_at, :format => :short) %></p>
+   </div>
+  </div>
+</div>
