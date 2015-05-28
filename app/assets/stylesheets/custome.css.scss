@@ -1,0 +1,189 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+@import url(http://fonts.googleapis.com/css?family=Oswald);
+@import url(http://fonts.googleapis.com/css?family=Roboto+Slab&subset=latin,latin-ext);
+
+body {
+  padding-top: 50px;
+}
+
+h4, form {
+	text-align:center;
+}
+
+.inner{
+  padding: 40px 15px;
+}
+
+h1.profil{
+ font-size: 30px;
+ margin-bottom:0px;
+}
+
+h2.profil{
+	font-size: 16px;
+	margin: 0px;
+}
+
+.bold{
+	font-weight:bold;
+}
+
+.logo{
+    margin-bottom:10px;
+    margin-left: 20px;
+    margin-right: 20px;
+	height: 80px;
+	width: 80px;
+}
+
+.stats{
+	margin-top:20px;
+}
+
+.last_log{
+	font-size: 15px;
+    font-style: italic;
+    color: #777;
+}
+
+a.stat{
+	padding: 12px 12px;
+}
+
+.follow, .add {
+	width:120px;
+}
+
+.stat_underlined{
+	border-bottom: 5px solid #047049;
+}
+
+.thumbnail_gallery{
+	border-width: 0px;
+  margin:0px;
+}
+
+.thumbnail_large{
+	width:100px;
+	height:100px;
+	margin-bottom:0px;
+}
+
+.thumbnail {
+  margin-bottom: 5px;
+}
+.original {
+  width: 500px;
+  height:500px;
+}
+.col_margin {
+  margin-bottom: 10px;
+}
+
+.btn_home{
+  font-weight:bold;
+  text-transform: uppercase;
+  letter-spacing:2px;
+  padding: 15px 20px;
+  font-size: 1.4em;
+  text-shadow: 2px 2px 4px #000;
+  background-color: #047049;
+  border-width: 3px;
+  border-color: #047049;
+}
+
+.btn_home:hover{
+    padding: 18px 24px;
+    border-color: #07412C;
+    background-color: #047049;
+  }
+
+.btn-primary {
+  background-color: #047049;
+  border-color: #047049;
+}
+
+.btn-primary:hover{
+    border-color: #07412C;
+    background-color: #047049;
+    border-width: 2px;
+  }
+
+ a{
+  color: #047049;
+  }
+
+ a:hover{
+  color: #07412C;
+  }
+
+#jumbotron_home {
+  padding-top:200px;
+  min-height: 600px;
+  background-image: image-url('img1.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center; 
+  background-size:cover;  
+
+h1,h2 {
+    color: #fff;
+    text-shadow: 2px 2px 8px #000;
+}
+
+h1{
+    font-size:4.0em;
+}
+h2{
+    font-size:1.8em;
+}
+}
+
+.center {
+  text-align: center;
+  h1 {
+  margin-bottom: 10px;
+}
+}
+
+.jumbotron{
+  h1{
+  font-size: 1.4em;
+  line-height:120%;
+  }
+  h2{
+  font-size: 1.2em;
+  }
+}
+
+#nav_logo {
+  text-shadow: 2px 2px 4px #000;
+  font-size: 2.0em;
+  text-transform:none;
+  letter-spacing:1px;
+  color: #fff;
+  font-weight: bold;
+  padding-top: 9px;
+  font-family: 'Roboto Slab';
+  margin-left: 20px;
+}
+
+#nav_logo:hover {
+  color: #eee;
+  font-size: 2.05em;
+}
+
+.btn_remove, .btn_remove:hover{
+  border-width: 1px;
+}
+
+.thumbnail > img{
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.heart{
+  color:#fff;
+}

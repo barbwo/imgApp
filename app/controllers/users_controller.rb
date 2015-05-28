@@ -7,18 +7,21 @@ class UsersController < ApplicationController
   
   def show
   	@user = User.find(params[:id])
+    @pictures = @user.pictures
   end
   
   def followeds
   	@user = User.find(params[:id])
-    @title = "Obserwowani  przez " + @user.nick
     @users = @user.followeds
   end
   
   def followers
   	@user = User.find(params[:id])
-    @title = "Obserwatorzy " + @user.nick
     @users = @user.followers
+  end
+  
+  def newsfeed
+    @last_items = current_user.feed.limit(20)
   end
 
 end

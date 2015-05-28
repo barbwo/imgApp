@@ -4,6 +4,10 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
   def index
+  	if signed_in?
+  		@picture = current_user.pictures.build
+      @my_last_items = current_user.pictures.limit(6)
+  	end
   end
 protected
 def configure_permitted_parameters

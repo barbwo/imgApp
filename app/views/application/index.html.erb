@@ -1,2 +1,12 @@
+<% if signed_in? %>
+	<%= render 'add_image' %>
+<% else %>
+   <% content_for :head do %>
+	  <div class="center jumbotron" id="jumbotron_home">
+		<h1>Dzień dobry!</h1>
+		<h2>Aby móc używać aplikacji, należy się zarejestrować.</h2>
 
-Hello!
+		<%= link_to "Rejestracja", new_user_registration_path, class: "btn btn-lg btn-primary btn_home" %>
+ 	  </div>
+  <% end %>
+<% end %>

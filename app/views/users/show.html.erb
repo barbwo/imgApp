@@ -1,3 +1,9 @@
+<script>
+$(document).ready(function() {
+  $("a.fancybox").fancybox();
+});
+</script>
+
 <div class="panel panel-default">
   <div class="panel-heading">
   	<div class="row">
@@ -5,7 +11,7 @@
       <div class="col-lg-5">
         <div class="btn-group pull-right stats" role="group">
           <a class="btn btn-default stat stat_underlined" href="<%= user_path (@user) %>">
-            <span class="bold"> 0 </span><br/>
+            <span class="bold"> <%= @user.pictures.count %> </span><br/>
             zdjęć
           </a>
           <a class="btn btn-default stat" href="<%= followeds_user_path(@user) %>">
@@ -21,6 +27,45 @@
     </div>
   </div>
   <div class="panel-body">
-    <% for     
+    <% for i in (0 .. @pictures.count/6) %>
+      <div class="row">
+        <% for j in (0..5) %>
+          <% if (!@pictures[6*i+j].nil?) %>
+            <div class="col-md-2 col-xs-4 col_margin">
+                <div class="thumbnail thumbnail_gallery">
+                <a href="<%= @pictures[6*i+j].image.url(:original) %>" title="<%= @pictures[6*i+j].title %>" alt="img" rel="gallery" class="fancybox">
+                <%= image_tag @pictures[6*i+j].image.url(:thumb), class: 'thumbnail' %>
+              </a>
+              <div class="media">
+                <div class="media-left">
+              <div class="media">
+                <div class="media-left">
+                  <%= link_to "#", class: "btn btn-default btn_remove disabled" do%>
+                  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+               <% end %>
+                  </div>
+                  <div class="media-body">
+                    <h4 style="text-align:left;margin-top:7px;"><%= @pictures[6*i+j].likes.count %></h4>
+             </div>
+             </div>
+           </div>
+           <div class="media-body">
+
+              <%if signed_in? %>
+               <% if current_user.id == @user.id %>
+               <%= link_to @pictures[6*i+j], method: :delete, data: { confirm: "Czy usunąć?" }, class: "btn btn-primary btn_remove pull-right" do%>
+                  <span class="glyphicon glyphicon-remove heart" aria-hidden="true"></span>
+               <% end %>
+               <% end %>
+               <% end %> 
+           </div>
+         </div>
+             <% end %>
+              </div>
+            </div>
+        <% end %>  
+      </div> 
+      <hr/>  
+    <% end %>     
   </div>
 </div>

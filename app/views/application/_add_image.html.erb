@@ -1,0 +1,81 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4>Dodaj zdjęcie</h4>
+  </div>
+  <div class="panel-body">
+	<%= form_for(@picture) do |f| %>
+	
+	  <div class="form-group">
+	  	<%= f.label :image, "Zdjęcie" %>
+	    <%= f.file_field :image, class: "form-control"%>
+	  </div>
+	  <div class="form-group">
+	  	<%= f.label :title, "Opis"%>
+	    <%= f.text_field :title, autocomplete: "off", class: "form-control" %>
+	  </div>
+	  <%= f.submit "Prześlij", class: "btn btn-primary add" %>
+	<% end %>
+  </div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <a href="<%= user_path current_user%>"> 
+      <h4>Moje najnowsze zdjęcia</h4>
+    </a>
+  </div>
+  <div class="panel-body">
+  	<div class="row">
+  	  <% @my_last_items.each do |i| %>
+	  	  <div class="col-md-2 col-xs-4">
+		  	  <div class="thumbnail thumbnail_gallery">
+		        <a href="<%= user_path current_user %>" title="<%= i.title %>" alt="img">
+		           <%= image_tag i.image.url(:thumb), class: 'thumbnail' %>
+		       </a>
+		      </div>
+		  </div>
+      <% end %>
+  	</div>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4>Polubione zdjęcia</h4>
+  </div>
+  <div class="panel-body">
+  	<div class="row">
+  	 <% likes = current_user.likes.limit(6) %>
+  	  <% likes.each do |i| %>
+	  	  <div class="col-md-2 col-xs-4">
+		  	  <div class="thumbnail thumbnail_gallery">
+		        <a href="<%= user_path User.find(i.user_id) %>" title="<%= 'Oznaczone ' + time_ago_in_words(i.created_at) + ' temu' %>" alt="img">
+		           <%= image_tag Picture.find(i.picture_id).image.url(:thumb), class: 'thumbnail' %>
+		       </a>
+		      </div>
+		  </div>
+      <% end %>
+  	</div>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <a href="<%= newsfeed_user_path current_user%>"> 
+    <h4>Najnowsze zdjęcia obserowanych użytkowników</h4>
+    </a>
+  </div>
+  <div class="panel-body">
+  	<div class="row">
+  	 <% feed_items = current_user.feed.limit(6) %>
+  	  <% feed_items.each do |i| %>
+	  	  <div class="col-md-2 col-xs-4">
+		  	  <div class="thumbnail thumbnail_gallery">
+		        <a href="<%= user_path User.find(i.user_id) %>" title="<%= 'Dodane ' + time_ago_in_words(i.created_at) + ' temu' %>" alt="img">
+		           <%= image_tag i.image.url(:thumb), class: 'thumbnail' %>
+		       </a>
+		      </div>
+		  </div>
+      <% end %>
+  	</div>
+  </div>
+</div>

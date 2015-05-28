@@ -13,6 +13,10 @@ class User < ActiveRecord::Base
   has_many :followeds, through: :active_relationships # lista obserw. przez użytk.
   has_many :followers, through: :passive_relationships #lista obserw.  użytk.
 
+  has_many :pictures, dependent: :destroy
+
+  has_many :likes, dependent: :destroy
+
   validates :nick, presence: true, uniqueness: true
   validates_length_of  :nick, in: 2..50 
   validates_length_of :name, maximum: 100
@@ -45,4 +49,9 @@ def self.new_with_session(params, session)
     self.followeds.include?(other_user) # followeds - obserwowane przez self
   end
 
+  def feed
+      following_ids = "SELECT followed_id FROM relationships
+                       WHERE  follower_id = :user_id"
+      Picture.where("user_id IN (#{following_ids})", user_id: id)
+    end
 end

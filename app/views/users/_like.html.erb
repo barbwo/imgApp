@@ -1,0 +1,15 @@
+<!--<a href="#"><span class="glyphicon glyphicon-heart-empty heart" aria-hidden="true"></span></a> -->
+
+<%if signed_in? %>
+		  <% if current_user.likes?(i)%>
+		    <%= form_for(current_user.likes.find_by(picture_id: i.id),
+		             html: { method: :delete }) do |f| %>
+		  <%= f.submit "+", class: "btn follow" %>
+		<% end %>
+		  <% else %>
+		    <%= form_for(current_user.likes.build) do |f| %>
+				  <div><%= hidden_field_tag :picture_id, i.id %></div>
+				  <%= f.submit "+", class: "btn btn-primary follow" %>
+				<% end %>
+				<% end %>
+<%end%>

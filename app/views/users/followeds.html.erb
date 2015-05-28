@@ -5,7 +5,7 @@
       <div class="col-lg-5 ">
         <div class="btn-group pull-right stats" role="group">
       <a class="btn btn-default stat" href="<%= user_path (@user) %>">
-                  <span class="bold"> 0 </span><br/>
+                  <span class="bold"> <%= @user.pictures.count %> </span><br/>
              zdjęć
                    </a>
                    <a class="btn btn-default stat  stat_underlined" href="<%= followeds_user_path(@user) %>">
@@ -16,7 +16,7 @@
               <span class="bold"> <%= @user.followers.count %> </span><br/>
              obserwujący
                    </a>
-</div>
+        </div>
       </div>
     </div>
   </div>

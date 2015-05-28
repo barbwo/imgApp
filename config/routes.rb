@@ -3,12 +3,13 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show]
   resources :users do
     member do
-      get :followeds, :followers
+      get :followeds, :followers, :newsfeed
     end
   end
+  resources :pictures,          only: [:create, :destroy]
   resources :relationships,       only: [:create, :destroy]
-  root :to => "application#index" # albo:
-  #root :to => "application#index" 
+  resources :likes,       only: [:create, :destroy]
+  root :to => "application#index" 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
