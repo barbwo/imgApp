@@ -13,7 +13,15 @@ h4, form {
 }
 
 .inner{
-  padding: 40px 15px;
+  padding: 0px 15px;
+}
+.panel{
+  margin-top:40px;
+  margin-bottom:50px;
+}
+.alert{
+ margin-top:10px;  
+ margin-bottom:10px;  
 }
 
 h1.profil{
@@ -105,7 +113,7 @@ a.stat{
   border-color: #047049;
 }
 
-.btn-primary:hover{
+.btn-primary:hover, .btn-primary:active, .btn-primary:focus{
     border-color: #07412C;
     background-color: #047049;
     border-width: 2px;
@@ -186,4 +194,19 @@ h2{
 
 .heart{
   color:#fff;
+}
+.footer{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 40px;
+  background-color:#fff;
+   border-top: 1px solid #eee;
+}
+p.foot{
+  margin-top:10px;  
+}
+html {
+  position: relative;
+  min-height: 100%;
 }

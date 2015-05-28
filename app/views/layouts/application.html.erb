@@ -24,14 +24,16 @@
 
   <body>
     <%= render "nav" %>
-    
-    <%= yield :head %>
-
     <div class="container">
       <div class="inner">
         <%= render "alert" %>
         <%=yield%>
       </div>
     </div>
+    <%= yield :head %>
+    <footer class="footer">
+      <div class="container center">
+        <p class="text-muted foot">Aplikacja IG, Barbara Woźniak</p>
+      </div>
   </body>
 </html>
