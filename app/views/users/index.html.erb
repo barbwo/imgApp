@@ -4,13 +4,17 @@
   </div>
   <div class="panel-body">
 	<ul class="list-group">
+      <div class="center"><%= will_paginate %></div>
 	  <% @users.each do |u| %>
-	  <li class="list-group-item">
-	  		<span style="font-weight:bold; padding-right:10px;"><%= link_to u.nick, user_path(u) %></span> 
-	  	  <%= u.name if !u.blank? %> 
-	  	  <%= u.email if Rails.env.development? %>
+	  <li class="list-group-item">	
+	    <span style="font-weight:bold; padding-right:10px;"><%= link_to u.nick, user_path(u) %></span> 
+	  	<%= u.name if !u.blank? %> 
+	  	<% if u.admin? %>
+	  	  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+	  	<% end %> 
 	  </li>
 	  <% end %>
+	  <div class="center"><%= will_paginate %></div>
 	</ul>
   </div>
 </div>

@@ -1,5 +1,6 @@
 <% if signed_in? %>
 	<%= render 'add_image' %>
+	<%= render 'shortcuts' %>
 <% else %>
    <% content_for :head do %>
 	  <div class="center jumbotron" id="jumbotron_home">

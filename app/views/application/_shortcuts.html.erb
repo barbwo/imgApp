@@ -1,0 +1,20 @@
+<% @title = link_to user_path(current_user) do %>
+ <h4> Moje najnowsze zdjęcia </h4>
+<% end %>
+<% @flag = "title" %>
+<% @pictures = @last_items %>
+<%= render 'six_pictures' %>
+
+<% @title = link_to user_path(current_user) do%>
+  <h4> Ulubione zdjęcia </h4>
+<% end %>
+<% @flag = "liked_at" %>
+<% @pictures = @liked_items %>
+<%= render 'six_pictures' %>
+
+<% @title = link_to newsfeed_user_path(current_user) do %>
+  <h4> Najnowsze zdjęcia obserowanych użytkowników </h4>
+<% end %>
+<% @flag = "created_at" %>
+<% @pictures = @followed_items %>
+<%= render 'six_pictures' %>

@@ -1,10 +1,12 @@
 class Picture < ActiveRecord::Base
+  # Associations
   belongs_to :user
+  has_many :likes, dependent: :destroy
+  has_many :liking_users, through: :likes, source: :user
+
+  #Validations
   validates :user_id, presence: true
   validates :title, length: { maximum: 255 }
-
-  has_many :likes, dependent: :destroy
-  has_many :users, through: :likes
 
   has_attached_file :image, styles: {:original => '500x500#',thumb: ["200x200#", :jpg]},
   path: "/:class/:attachment/:id_partition/:style/:hash.:extension",

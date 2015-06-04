@@ -3,54 +3,35 @@
     <h4>Najnowsze zdjęcia obserwowanych użytkowników</h4>
   </div>
   <div class="panel-body">
+    <% if @last_items.count == 0 %>
+      <p class="center"> Aktualnie brak zdjęć do wyświetlenia. </p>
+    <% else %>
       <% @last_items.each do |i| %>
-            <div class="row">
-              <div class="col-md-4">
-                <% u = User.find(i.user_id) %>
-                <div class="media">
-                  <div class="media-right">
-                  <a href="<%= user_path u %>" title="<%= i.title %>" alt="img">
+        <div class="row">
+          <div class="col-md-4">
+            <% u = User.find(i.user_id) %>
+            <div class="media">
+              <div class="media-right">
+                <a href="<%= user_path u %>" title="<%= i.title %>" alt="img">
                   <%= gravatar_for_logo u %>
-                  </a>
-                </div>
-                <div class="media-body">
-                  <h4 style="text-align:left;"><%= u.nick %></h4>
-                  <p><i> <%= time_ago_in_words(i.created_at) %> temu</i></p>
-
-                </div>
-               </div>
+                </a>
+              </div>
+              <div class="media-body">
+                <h4 style="text-align:left;"><%= u.nick %></h4>
+                <p><i> <%= time_ago_in_words(i.created_at) %> temu</i></p>
+              </div>
             </div>
-            <div class="col-md-6 col-offset-2">    
-              <div class="thumbnail thumbnail_gallery">
+          </div>
+          <div class="col-md-6 col-offset-2">    
+            <div class="thumbnail thumbnail_gallery">
               <%= image_tag i.image.url(:original), class: 'thumbnail original' %>
               <div class="caption">
                 <div class="media">
                   <div class="media-left">
-                <div class="media" style="margin-right:5px;">
-                  <div class="media-left">
-                    <% if i.users.include?(current_user)%>
-                      <%= form_for(current_user.likes.find_by(picture_id: i.id),
-                               html: { method: :delete }) do |f| %>
-                      
-                      <%= button_tag(type: 'submit', class: "btn btn_remove") do %>
-                        <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
-                      <% end %>
-                      <% end %>
-                    <% else %>
-                      <%= form_for(current_user.likes.build) do |f| %>
-                      <div><%= hidden_field_tag :picture_id, i.id %></div>
-                        <%= button_tag(type: 'submit', class: "btn btn-primary btn_remove") do %>
-                          <span class="glyphicon glyphicon-plus heart" aria-hidden="true"></span>
-                        <% end %>
-                      <% end %>
-                    <% end %>
+                    <% @pic = i %>
+                   <%= render 'button_like' %>
                   </div>
                   <div class="media-body">
-                    <h4 style="text-align:left;margin-top:7px;"> <%= i.likes.count %> </h4>
-                    </div>
-                  </div>
-                </div>
-                    <div class="media-body">
                     <p style="text-align:left;font-size:14px;"><%= i.title %></p>
                   </div>
                 </div>
@@ -58,7 +39,8 @@
             </div>
           </div>
         </div>
-          <hr/>
+        <hr/>
       <% end %>
+    <% end %>
   </div>
 </div>

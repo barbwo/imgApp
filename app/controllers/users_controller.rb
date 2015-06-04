@@ -1,8 +1,9 @@
 class UsersController < ApplicationController
-	before_action :authenticate_user!, only: [:show, :followeds, :followers]
+  before_action :authenticate_user!, only: [:show, :followeds, :followers, :newsfeed, :liked_pictures]
+  load_and_authorize_resource
   
   def index
-  	@users = User.all
+  	@users = User.order(:nick).paginate(page: params[:page], per_page: 10)
   end
   
   def show
@@ -21,7 +22,11 @@ class UsersController < ApplicationController
   end
   
   def newsfeed
-    @last_items = current_user.feed.limit(20)
+    @last_items = current_user.feed
   end
 
+  def liked_pictures
+    @user = User.find(params[:id])
+    @pictures = current_user.liked_pictures
+  end
 end

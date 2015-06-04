@@ -1,5 +1,8 @@
 ---
-pl:          
+pl:  
+  will_paginate:
+    previous_label: <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    next_label: <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>        
   date:
     abbr_day_names:
     - nie

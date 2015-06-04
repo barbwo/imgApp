@@ -1,17 +1,37 @@
-<% for i in (0 .. @users.count/6) %>
-      <div class="row">
-        <% for j in (0..5) %>
-          <% if (!@users[6*i+j].nil?) %>
-            <div class="col-md-2 col-xs-4">
-                <div class="thumbnail thumbnail_gallery">
-                <%= link_to (gravatar_for_gallery @users[6*i+j]), @users[6*i+j] %>
-                <h4><%= @users[6*i+j].nick %></h4>
+<script>
+$(document).ready(function() {
+  $("a.fancybox").fancybox();
+});
+</script>
+
+<% for i in (0 .. @pictures.count/6) %>
+  <div class="row">
+    <% for j in (0..5) %>
+      <% if (!@pictures[6*i+j].nil?) %>
+        <div class="col-md-2 col-xs-4 col_margin">
+          <div class="thumbnail thumbnail_gallery">
+            <a href="<%= @pictures[6*i+j].image.url(:original) %>" title="<%= @pictures[6*i+j].title %>" alt="img" rel="gallery" class="fancybox">
+              <%= image_tag @pictures[6*i+j].image.url(:thumb), class: 'thumbnail' %>
+            </a>
+            <div class="media">
+              <div class="media-left">
+                <% @pic = @pictures[6*i+j] %>
+                <%= render 'users/button_like' %>
+              </div>
+              <div class="media-body">
+                <%if signed_in? %>
+                  <% if current_user.id == @user.id %>
+                    <%= link_to @pictures[6*i+j], method: :delete, data: { confirm: "Czy usunąć?" }, class: "btn btn-primary btn_remove pull-right" do%>
+                    <span class="glyphicon glyphicon-remove heart" aria-hidden="true"></span>
+                    <% end %>
+                  <% end %>
+                <% end %> 
               </div>
             </div>
-          <% else %>
-             <% break; %>
-          <% end %>
-        <% end %>  
-      </div>
-      <hr/>     
+          </div>
+        </div>
+      <% end %>
     <% end %>  
+  </div> 
+  <hr/>  
+<% end %> 

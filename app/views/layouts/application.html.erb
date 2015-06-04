@@ -7,8 +7,8 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="IG app">
     <meta name="author" content="Barbara">
-    <%= favicon_link_tag(source='favicon.ico', options={}) %>
-    <title>Aplikacja IG</title>
+    <%= favicon_link_tag(source='favicon.ico') %>
+    <title>Aplikacja IMG</title>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 
@@ -33,7 +33,7 @@
     <%= yield :head %>
     <footer class="footer">
       <div class="container center">
-        <p class="text-muted foot">Aplikacja IG, Barbara Woźniak</p>
+        <p class="text-muted foot">Aplikacja IMG, <%=link_to "Barbara Woźniak", help_contact_path %></p>
       </div>
   </body>
 </html>

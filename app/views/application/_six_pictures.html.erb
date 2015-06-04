@@ -1,0 +1,35 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <%= @title %>
+  </div>
+  <div class="panel-body">
+  	<div class="row">
+      <% if @pictures.count == 0 %>
+        <p class="center"> Aktualnie brak zdjęć do wyświetlenia. </p>
+      <% else %>
+    	  <% @pictures.each do |i| %>
+            <% if @flag == "title" %>
+                  <% description = i.title %>
+            <% else %>
+               <%if @flag == "liked_at" %>
+                    <% description = 'Oznaczone ' + time_ago_in_words(i.likes.find_by(user_id: current_user.id).created_at) + ' temu' %>
+              <% else %>
+                <%if @flag == "created_at" %>
+                      <% description = 'Dodane ' + time_ago_in_words(i.created_at) + ' temu' %>
+                <% else %>
+                      <% description = '' %>
+                <% end %>
+              <% end %>
+            <% end %>
+  	  	  <div class="col-md-2 col-xs-4">
+  		  	  <div class="thumbnail thumbnail_gallery">
+  		        <a href="<%= user_path current_user %>" title="<%= description %>" alt="img">
+  		           <%= image_tag i.image.url(:thumb), class: 'thumbnail' %>
+  		       </a>
+  		      </div>
+  		  </div>
+        <% end %>
+      <% end %>
+  	</div>
+  </div>
+</div>

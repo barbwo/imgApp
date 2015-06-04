@@ -1,13 +1,17 @@
 class LikesController < ApplicationController
   before_action :authenticate_user!
+  load_and_authorize_resource
+  
+  respond_to :html, :js
+  
   def create
-  	picture = Picture.find(params[:picture_id])
-    Like.create(picture: picture, user: current_user)
-    redirect_to newsfeed_user_path current_user
+  	@pic = Picture.find(params[:picture_id])
+    Like.create(picture: @pic, user: current_user)
   end
+  
   def destroy 
+    @pic = Picture.find(Like.find(params[:id]).picture_id)
   	Like.find(params[:id]).destroy
-    redirect_to newsfeed_user_path current_user
   end
 
 end

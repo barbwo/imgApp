@@ -42,7 +42,13 @@ pl:
         greeting: Cześć %{recipient}!
         instruction: 'Kliknij poniższy link, aby odblokować swoje konto:'
         message: Twoje konto zostało zablokowane z powodu zbyt dużej ilości nieprawidłowych prób zalogowania się na nie.
+    omniauth_callbacks:
+      user:
+        failure: Logowanie się nie powiodło
+        success: Logowanie zakończyło się pomyślnie
     passwords:
+      user:
+        send_instructions: Instrukcje zostały wysłane
       edit:
         change_my_password: Zmień moje hasło
         change_your_password: Zmień swoje hasło
