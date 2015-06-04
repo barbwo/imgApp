@@ -1,4 +1,4 @@
-class ChangeNickOptionsForUser < ActiveRecord::Migration
+class ChangeIndexUsersOnNick < ActiveRecord::Migration
   
   def self.up
     remove_index :users, :nick
